@@ -110,7 +110,7 @@ function busyTimes(busyList) {
             $scope.showDetails = function(item) {
                 // Make the item that user clicked available to the template
                 $scope.detailsItem = item;
-                $scope.portalHelpers.showView('meetDetails.html', 2);
+                $scope.portalHelpers.showView('meetMain.html', 2);
             }
             
             $scope.showTimeList = function (item) {

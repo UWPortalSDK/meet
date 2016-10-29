@@ -1,24 +1,32 @@
 <!-- Primary template that will get shown when widget loads -->
-<script type="text/ng-template" id="meetMain.html"> 
-	<widget-row ng-repeat="item in items" clickable ng-click="showDetails(item)">
-		<widget-cell fill>
-			<span class="itemName">{{item.title}}</span>
-			<span ng-repeat= "tag in item.tags" class="label label-success">
-				{{tag}}
-			</span>
-		</widget-cell>
-		<widget-cell>
-			<widget-icon name="angle-right"></widget-icon>
-		</widget-cell>
-	</widget-row>
+
+<script type="text/ng-template" id="meetMain.html">
+    <div ng-app="portalApp" ng-controller="meetCtrl">
+        <div class="input-group">
+            <input id="search" type="text" class="form-control" placeholder="User ID" aria-describedby="basic-addon1" ng-model="inputuser.value"/>
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addToList()">Add</button>
+  </span>
+        </div>
+        <widget-list list="item in model">
+            <widget-row>
+                <widget-cell>
+                    <widget-row>
+                        <widget-cell fill>
+                            {{item.title}}
+                        </widget-cell>
+                        <widget-cell clickable ng-click="remove(item)">
+                            <widget-icon name="cancel-circled"></widget-icon>
+                        </widget-cell>
+                    </widget-row>
+                </widget-cell>
+            </widget-row>
+        </widget-list>
+      <button id="compare-btn" class="btn btn-default" type="button" ng-click="showTimeList()">Compare</button>
+    </div>
 </script>
 
-<!-- This template gets shown when user clicks one of the items in the list -->
-<script type="text/ng-template" id="meetDetails.html"> 
-	<!-- 'wr' and 'wc' are short for 'widget-row' and 'widget-cell' -->
-	<wr>
-		<wc><h2>{{detailsItem.title}}</h2></wc>
-	</wr>
-	<wr><wc><span ng-repeat= "tag in detailsItem.tags" class="label label-success">{{tag}}</span></wc></wr>
-	<wr><wc><div class="pDetails">{{detailsItem.details}}</div></wc></wr>
+<script type="text/ng-template" id="listTimes.html">
+    <widget-list>
+    </widget-list>
 </script>
